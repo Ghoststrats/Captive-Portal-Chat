@@ -1,6 +1,6 @@
 # Captive-Portal-Chat
 GhostStrats Portal Chat
-This HTML file is designed to work with the BLE Shark Nano. When you upload it to your Nano, it becomes a local captive portal that shows a private message after a password is entered.
+This HTML file becomes a local captive portal that shows a private message after a password is entered.
 
 Everything runs offline and is stored inside the HTML file.
 
