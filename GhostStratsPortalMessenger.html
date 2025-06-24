@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GhostStrats Portal Chat</title>
+    <!-- This HTML file is designed to work with the BLE Shark Nano. When you upload it to your Nano, it becomes a local captive portal that shows a private message after a password is entered.
+
+Everything runs offline and is stored inside the HTML file. -->
+
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #0a0014;
+      color: #bb86fc;
+      text-align: center;
+      padding: 30px;
+    }
+    #login, #messageArea {
+      max-width: 500px;
+      margin: auto;
+      background-color: #1a0033;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #6200ea;
+    }
+    h2 {
+      color: #bb86fc;
+    }
+    input, button {
+      font-family: monospace;
+      background-color: #2d004d;
+      color: #bb86fc;
+      border: 1px solid #bb86fc;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #3700b3;
+      cursor: pointer;
+    }
+    #portalMessage {
+      margin-top: 20px;
+      color: #e0b3ff;
+      text-align: left;
+      border-top: 1px solid #6200ea;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="login">
+  <h2> GhostStrats Portal Chat</h2>
+  <input type="password" id="passwordInput" placeholder="Enter Password">
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="error" style="color: #ff4081;"></p>
+</div>
+
+<div id="messageArea" style="display:none;">
+  <h2> Message from GhostStrats</h2>
+  <div id="portalMessage">
+    <!-- This is where you write the message to display after login -->
+    <p>
+      Welcome to the GS hidden portal Messenger!!.<br>
+      Test Test Secret Message.<br>
+      <br>
+      Safety is an illusion.<br>
+      —GhostStrats
+    </p>
+  </div>
+</div>
+
+<script>
+  // If you want to change the login password, do it right here:
+  const correctPassword = "GhostStrats";
+
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === correctPassword) {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('messageArea').style.display = 'block';
+    } else {
+      document.getElementById('error').textContent = "Wrong password. Try again.";
+    }
+  }
+</script>
+
+</body>
+</html>
