@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhostStrats Portal Message Builder</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(123, 44, 255, 0.22), transparent 35%),
+        linear-gradient(180deg, #05000b 0%, #020004 60%, #000000 100%);
+      color: #d8b4ff;
+      font-family: "Courier New", monospace;
+    }
+
+    .box {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(3, 0, 9, 0.96);
+      border: 1px solid #7b2cff;
+      border-radius: 14px;
+      box-shadow:
+        0 0 18px rgba(123, 44, 255, 0.70),
+        inset 0 0 28px rgba(123, 44, 255, 0.12);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #050505;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: "Arial Black", "Courier New", monospace;
+      text-shadow:
+        0 0 2px #7b2cff,
+        0 0 8px #7b2cff,
+        0 0 18px #9d4edd,
+        0 0 28px rgba(157, 78, 221, 1);
+    }
+
+    p {
+      color: #b98cff;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      color: #00ffcc;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 13px;
+      text-shadow: 0 0 8px #00ffcc;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: #090014;
+      color: #f0dcff;
+      border: 1px solid #9d4edd;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+      outline: none;
+      box-shadow:
+        inset 0 0 12px rgba(157, 78, 221, 0.18),
+        0 0 10px rgba(157, 78, 221, 0.14);
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      background: linear-gradient(135deg, #240046, #3c096c);
+      color: #f1ddff;
+      border: 1px solid #c77dff;
+      border-radius: 8px;
+      font-family: "Arial Black", "Courier New", monospace;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(157, 78, 221, 0.45);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3c096c, #5a189a);
+      box-shadow: 0 0 18px #9d4edd;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #8f62bd;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>Portal Message Builder</h1>
+
+  <p>
+    Write the message you want the GhostStrats portal to display.
+    This tool will generate a new HTML file with your message already inside it.
+  </p>
+
+  <label for="portalTitle">Portal Title</label>
+  <input id="portalTitle" value="GhostStrats Portal Chat">
+
+  <label for="portalMessage">Portal Message</label>
+  <textarea id="portalMessage">Please write your message here...</textarea>
+
+  <button onclick="generatePortal()">Generate Portal File</button>
+
+  <div class="note">
+    This runs locally in your browser. It does not upload anything.
+  </div>
+</div>
+
+<script>
+  function escapeHTML(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function generatePortal() {
+    const title = escapeHTML(document.getElementById("portalTitle").value.trim() || "GhostStrats Portal Chat");
+    const message = escapeHTML(document.getElementById("portalMessage").value.trim() || "Please write your message here...").replace(/\n/g, "<br>");
+
+    const portalHTML = `<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>${title}</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      background: #000;
+      color: #d8b4ff;
+      font-family: "Courier New", monospace;
+    }
+
+    body {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(123, 44, 255, 0.22), transparent 34%),
+        linear-gradient(180deg, #06000d 0%, #020004 55%, #000000 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(157, 78, 221, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 78, 221, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    .scanline {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 3px;
+      background: #9d4edd;
+      box-shadow: 0 0 16px #9d4edd;
+      animation: scan 3.5s linear infinite;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% { top: 0; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    .app {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(3, 0, 9, 0.96);
+      box-shadow: inset 0 0 45px rgba(123, 44, 255, 0.22);
+      z-index: 1;
+    }
+
+    .topbar {
+      flex: 0 0 auto;
+      padding: 9px 10px;
+      background: #05000b;
+      border-bottom: 1px solid rgba(157, 78, 221, 0.55);
+      color: #9d4edd;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+
+    .header {
+      flex: 0 0 auto;
+      padding: 14px 10px 13px;
+      text-align: center;
+      border-bottom: 1px solid #7b2cff;
+      background:
+        radial-gradient(circle at center, rgba(123, 44, 255, 0.18), transparent 58%),
+        linear-gradient(180deg, #0a0018, #030008);
+    }
+
+    .terminalTag {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 5px 9px;
+      border: 1px solid #9d4edd;
+      color: #00ffcc;
+      background: rgba(0, 255, 204, 0.04);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #00ffcc;
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Arial Black", "Impact", "Courier New", monospace;
+      font-size: clamp(20px, 7vw, 28px);
+      line-height: 1.1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #050505;
+      text-shadow:
+        0 0 2px #7b2cff,
+        0 0 7px #7b2cff,
+        0 0 14px #9d4edd,
+        0 0 28px rgba(157, 78, 221, 1);
+    }
+
+    .subtitle {
+      margin-top: 7px;
+      color: #c77dff;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.3;
+      text-shadow: 0 0 10px rgba(157, 78, 221, 0.9);
+    }
+
+    .instructions {
+      flex: 0 0 auto;
+      padding: 9px 10px;
+      color: #00ffcc;
+      background: rgba(0, 255, 204, 0.04);
+      border-bottom: 1px solid rgba(123, 44, 255, 0.55);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      line-height: 1.35;
+      text-shadow: 0 0 8px #00ffcc;
+    }
+
+    .chat {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 11px;
+      background:
+        radial-gradient(circle at bottom right, rgba(157, 78, 221, 0.16), transparent 42%),
+        linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.74));
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .chat::-webkit-scrollbar {
+      display: none;
+    }
+
+    .msg {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 11px;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.45;
+      word-wrap: break-word;
+      letter-spacing: 0.3px;
+    }
+
+    .ghost {
+      background: rgba(35, 0, 70, 0.82);
+      border: 1px solid #9d4edd;
+      box-shadow:
+        0 0 12px rgba(157, 78, 221, 0.42),
+        inset 0 0 14px rgba(157, 78, 221, 0.08);
+      color: #ead7ff;
+    }
+
+    .user {
+      background: rgba(0, 255, 204, 0.08);
+      border: 1px solid #00ffcc;
+      color: #dcfff8;
+    }
+
+    .name {
+      display: block;
+      margin-bottom: 5px;
+      color: #c77dff;
+      font-family: "Arial Black", "Courier New", monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .user .name {
+      color: #00ffcc;
+    }
+
+    .writeBox {
+      flex: 0 0 auto;
+      padding: 11px;
+      border-top: 1px solid #7b2cff;
+      background: linear-gradient(90deg, #080014, #140026);
+    }
+
+    .writeLabel {
+      display: block;
+      margin-bottom: 6px;
+      color: #c77dff;
+      font-family: "Arial Black", "Courier New", monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(157, 78, 221, 0.75);
+    }
+
+    textarea {
+      width: 100%;
+      height: 96px;
+      resize: none;
+      background: #090014;
+      color: #f0dcff;
+      border: 1px solid #9d4edd;
+      border-radius: 7px;
+      padding: 11px;
+      font-family: "Courier New", monospace;
+      font-size: 16px;
+      outline: none;
+      box-shadow:
+        inset 0 0 12px rgba(157, 78, 221, 0.18),
+        0 0 10px rgba(157, 78, 221, 0.14);
+    }
+
+    textarea::placeholder {
+      color: #8f62bd;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px;
+      background: linear-gradient(135deg, #240046, #3c096c);
+      color: #f1ddff;
+      border: 1px solid #c77dff;
+      border-radius: 7px;
+      font-family: "Arial Black", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(157, 78, 221, 0.45);
+    }
+
+    .footer {
+      flex: 0 0 auto;
+      padding: 8px;
+      background: #05000d;
+      border-top: 1px solid rgba(123, 44, 255, 0.4);
+      color: #8f62bd;
+      text-align: center;
+      font-size: 9px;
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+    }
+
+    .glow {
+      color: #ff4fd8;
+      text-shadow: 0 0 8px #ff4fd8;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="scanline"></div>
+
+<div class="app">
+
+  <div class="topbar">
+    <span class="dot"></span> Signal Active
+  </div>
+
+  <div class="header">
+    <div class="terminalTag">LOCAL TERMINAL ONLINE</div>
+    <h1 class="title">${title}</h1>
+    <div class="subtitle">Safety is an illusion</div>
+  </div>
+
+  <div class="instructions" id="instructionText">
+    INSTRUCTIONS: Type one message below, press send, then refresh for the next signal.
+  </div>
+
+  <div class="chat" id="chatBox">
+    <div class="msg ghost">
+      <span class="name">GhostStrats</span>
+      ${message}
+    </div>
+  </div>
+
+  <div class="writeBox" id="writeBox">
+    <label class="writeLabel" for="messageInput">Write Message</label>
+    <textarea id="messageInput" placeholder="Write your message here..."></textarea>
+    <button onclick="sendMessage()">Send Message</button>
+  </div>
+
+  <div class="footer">
+    Safety is an illusion <span class="glow">|</span> One message portal <span class="glow">|</span> Refresh for new signal
+  </div>
+
+</div>
+
+<script>
+  const nanoEndpoint = "/message";
+
+  async function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const chatBox = document.getElementById("chatBox");
+    const writeBox = document.getElementById("writeBox");
+    const instructionText = document.getElementById("instructionText");
+    const text = input.value.trim();
+
+    if (text === "") {
+      alert("Please write your message first.");
+      return;
+    }
+
+    const message = document.createElement("div");
+    message.className = "msg user";
+    message.innerHTML = '<span class="name">You</span>' + escapeHTML(text);
+    chatBox.appendChild(message);
+
+    instructionText.textContent = "SENDING: Message is being sent to the portal device...";
+
+    try {
+      const response = await fetch(nanoEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "message=" + encodeURIComponent(text)
+      });
+
+      if (response.ok) {
+        instructionText.textContent = "SENT: Message received. Refresh for the next signal.";
+      } else {
+        instructionText.textContent = "ERROR: Message could not be confirmed. Refresh and try again.";
+      }
+    } catch (error) {
+      instructionText.textContent = "LOCAL ONLY: Message shown on screen. Check the /message route.";
+    }
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    input.value = "";
+    input.disabled = true;
+    writeBox.querySelector("button").disabled = true;
+
+    alert("Please refresh to get new message");
+  }
+
+  function escapeHTML(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  document.getElementById("messageInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+<\/script>
+
+</body>
+</html>`;
+
+    const blob = new Blob([portalHTML], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "ghoststrats-portal.html";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>
