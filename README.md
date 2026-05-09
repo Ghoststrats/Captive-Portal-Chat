@@ -1,8 +1,18 @@
-# GhostStrats Portal Messager
+# GhostStrats Portal Messenger
+
+GhostStrats Portal Messenger is a simple offline HTML portal system for creating custom evil portal message pages without having to edit the code by hand.
+
+This project includes two files:
+
+1. `Portal-Message-Builder.html`  
+   This is the builder tool. Use this file to type your custom message and generate a new portal HTML file.
+
+2. `GhostStratsPortalMessenger.html`  
+   This is the base portal messenger file. You can use it as a ready made portal page or as the template style for your generated portals.
 
 ## How It Works
 
-Start by opening the `portal-builder.html` file in your browser.
+Start by opening `Portal-Message-Builder.html` in your browser.
 
 Inside the builder, type the message you want to broadcast through the portal. This is the message people will see when they connect to your evil portal.
 
@@ -12,11 +22,11 @@ The builder will create a new HTML file for you. Upload that generated file to y
 
 When someone connects to the portal, they will see your custom message. They will also have one message box where they can type a response and send it back.
 
-If the device or firmware you are using supports receiving messages through the `/message` endpoint, the response will show up on your device.
+If the device or firmware you are using supports receiving messages through the `/message` endpoint, the response can show up on your device.
 
 ## Basic Workflow
 
-1. Open `portal-builder.html`
+1. Open `Portal-Message-Builder.html`
 2. Type the message you want the portal to broadcast
 3. Click **Generate Portal File**
 4. Upload the generated HTML file to your evil portal device
@@ -27,17 +37,17 @@ If the device or firmware you are using supports receiving messages through the 
 
 ## Files Included
 
-### `portal-builder.html`
+### `Portal-Message-Builder.html`
 
 Use this file first.
 
 This lets you build a custom portal by typing your message into a simple form. When you click generate, it creates a ready to upload HTML portal file.
 
-### `ghoststrats-portal-template.html`
+### `GhostStratsPortalMessenger.html`
 
-This is the base portal design.
+This is the base portal messenger page.
 
-You can use it as a manual template, but most users should just use the builder because it creates a customized version automatically.
+You can use it directly, edit it manually, or use the builder to generate customized versions.
 
 ## Notes
 
