@@ -1,14 +1,4 @@
-# GhostStrats Portal Message Builder
-
-GhostStrats Portal Message Builder is a simple offline HTML tool for creating custom evil portal pages without having to edit the portal code by hand.
-
-This project includes two files:
-
-1. `portal-builder.html`  
-   This is the builder tool. Use this file to type your custom message and generate a new portal HTML file.
-
-2. `ghoststrats-portal-template.html`  
-   This is the basic template file. You can edit it manually, or you can just use the builder to generate your own customized version.
+# GhostStrats Portal Messager
 
 ## How It Works
 
